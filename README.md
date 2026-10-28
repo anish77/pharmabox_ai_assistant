@@ -51,7 +51,7 @@ The application follows a modular RAG architecture:
 
 1. Clone the repository:
 
-   git clone <repository-url>
+   git clone <https://github.com/anish77/pharmabox_ai_assistant.git>
    cd pharmabox_ai_assistant
 
 2. Install dependencies:

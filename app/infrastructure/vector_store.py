@@ -39,3 +39,12 @@ class VectorStore:
         )
 
         return results
+
+    def reset_collection(self):
+        collection_name = self.collection.name
+
+        self.client.delete_collection(name=collection_name)
+
+        self.collection = self.client.get_or_create_collection(
+            name=collection_name
+        )

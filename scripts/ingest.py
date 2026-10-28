@@ -19,6 +19,7 @@ def main():
     embeddings = embedding_service.embed_texts(texts)
 
     vector_store = VectorStore()
+    vector_store.reset_collection()
     vector_store.add_chunks(chunks, embeddings)
 
     print(f"Ingestion completed: {len(chunks)} chunks stored.")

@@ -24,3 +24,16 @@ The assistant retrieves relevant information from the PharmaBox user manual and 
 - **Vector Database:** ChromaDB
 - **PDF Processing:** PyMuPDF
 - **Testing:** pytest, FastAPI TestClient
+
+## Architecture
+
+The application follows a modular RAG architecture:
+
+1. **PDF Ingestion** — Extract text and page metadata using PyMuPDF.
+2. **Chunking** — Split document text into overlapping chunks.
+3. **Embeddings** — Convert chunks into semantic vectors using Sentence Transformers.
+4. **Vector Storage** — Store embeddings and metadata persistently in ChromaDB.
+5. **Retrieval** — Find the most relevant chunks for a user question.
+6. **Generation** — Generate an answer using OpenAI and the retrieved context.
+7. **Citation Validation** — Check that cited source IDs exist among the retrieved sources.
+8. **REST API** — Expose the assistant through FastAPI.

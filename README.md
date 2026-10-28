@@ -37,3 +37,43 @@ The application follows a modular RAG architecture:
 6. **Generation** — Generate an answer using OpenAI and the retrieved context.
 7. **Citation Validation** — Check that cited source IDs exist among the retrieved sources.
 8. **REST API** — Expose the assistant through FastAPI.
+
+## Installation
+
+### Prerequisites
+
+- Python 3.12
+- Git
+- uv package manager
+- OpenAI API key
+
+### Setup
+
+1. Clone the repository:
+
+   git clone <repository-url>
+   cd pharmabox_ai_assistant
+
+2. Install dependencies:
+
+   uv sync
+
+3. Configure the OpenAI API key:
+
+   Create a `.env` file in the project root:
+
+   OPENAI_API_KEY=your_api_key_here
+
+4. Add the PharmaBox user manual to:
+
+   data/raw/Manuale-PharmaBox.pdf
+
+5. Build the vector database using the project's ingestion script.
+
+6. Start the FastAPI server:
+
+   uv run uvicorn app.api:app --reload
+
+7. Open the interactive API documentation:
+
+   http://127.0.0.1:8000/docs

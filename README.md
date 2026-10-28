@@ -77,3 +77,70 @@ The application follows a modular RAG architecture:
 7. Open the interactive API documentation:
 
    http://127.0.0.1:8000/docs
+
+## Running the Application
+
+Start the FastAPI development server:
+
+    uv run uvicorn app.api:app --reload
+
+Open the interactive API documentation:
+
+http://127.0.0.1:8000/docs
+
+### API Endpoints
+
+#### GET /health
+
+Returns the application health status.
+
+#### POST /ask
+
+Accepts a question about PharmaBox and returns an AI-generated
+answer with source references.
+
+Example request:
+
+    {
+      "question": "Come posso creare una lista in PharmaBox?"
+    }
+
+Example response structure:
+
+    {
+      "answer": "Answer with citation [SOURCE_1].",
+      "sources": [
+        {
+          "id": "SOURCE_1",
+          "page": 9,
+          "source": "Manuale-PharmaBox.pdf"
+        }
+      ],
+      "citations_valid": true
+    }
+
+The example illustrates the response format. Actual answers
+and retrieved sources depend on the question and document content.
+
+## Running Tests
+
+Run all automated tests:
+
+    uv run pytest tests/ -v
+
+The test suite covers:
+
+- API health endpoint
+- Question-answering endpoint with mocked RAG dependencies
+- Empty-question validation
+- Valid citations
+- Invalid citations
+- Missing citations
+
+## Limitations
+
+- Answers depend on the information available in the user manual.
+- Citation validation checks whether referenced source IDs exist,
+  but does not verify whether the sources support each claim.
+- The current ingestion process does not automatically remove
+  outdated chunks when the source document becomes shorter.
